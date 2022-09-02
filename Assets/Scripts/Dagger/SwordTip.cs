@@ -26,11 +26,8 @@ public class SwordTip : MonoBehaviour
     [SerializeField, Tooltip("A reference to a blank material for use in modifying particle materials")]
     private Material blankMaterial;
 
-    [SerializeField, Tooltip("A reference to the SwordFlip script attached to the parent")]
-    private SwordFlip flip;
-
     [SerializeField, Tooltip("A reference to the ClimbSword script attached to the parent")]
-    private ClimbSword climb;
+    private ClimbSwordAutohand climb;
 
     [SerializeField, Tooltip("A reference to the audio mixer, for use in playing the collision sound")]
     private AudioSource audioM;
@@ -226,8 +223,8 @@ public class SwordTip : MonoBehaviour
         StartCoroutine(EnableColliders());
         parentRB.mass = 5f;
         parentRB.freezeRotation = false;
-        climb.trackPosition = true;
-        climb.trackRotation = true;
+        //climb.trackPosition = true;
+        //climb.trackRotation = true;
         isClimbingWall = false;
         hasNegatedForce = false;
     }
@@ -256,8 +253,8 @@ public class SwordTip : MonoBehaviour
         }
 
         if (joint && !((transform.localPosition - startPos).normalized.y >= -0.1 && Vector3.Distance(startPos, transform.localPosition) >= 0.01)) {
-            climb.trackPosition = false;
-            climb.trackRotation = false;
+            //climb.trackPosition = false;
+            //climb.trackRotation = false;
             climb.SetClimbingHand();
         }
     }
@@ -284,7 +281,7 @@ public class SwordTip : MonoBehaviour
         if (GetDepthPercent() <= .05)
             yield return null;
         if (obj.tag == "Wall") {
-            if (flip.isFlipped && !isClimbingWall) {
+            if (!isClimbingWall) {
                 // Sets static variable for hand currently anchored for climbing
                 StartCoroutine(TurnOffTracking());
                 isClimbingWall = true;
@@ -305,14 +302,14 @@ public class SwordTip : MonoBehaviour
             newParticle.transform.parent = obj.transform;
         }
 
-        if (enemy || flip.isFlipped) {
-            newParticle = Instantiate(hitParticle, pos, Quaternion.identity, null);
-            newParticle.transform.LookAt(this.gameObject.transform);
-            if (enemy)
-                defaultMat.color = enemy.blood.color;
-            else
-                defaultMat.color = new Color(.86f, .84f, .8f); // Really needs a more dynamic option, may need a better color for mvp models
-            newParticle.GetComponent<ParticleSystemRenderer>().material = defaultMat;
-        }
+        
+        newParticle = Instantiate(hitParticle, pos, Quaternion.identity, null);
+        newParticle.transform.LookAt(this.gameObject.transform);
+        if (enemy)
+            defaultMat.color = enemy.blood.color;
+        else
+            defaultMat.color = new Color(.86f, .84f, .8f); // Really needs a more dynamic option, may need a better color for mvp models
+        newParticle.GetComponent<ParticleSystemRenderer>().material = defaultMat;
+    
     }
 }

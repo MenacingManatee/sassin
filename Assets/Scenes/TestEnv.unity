@@ -1333,6 +1333,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4766743236998008166, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.5827837
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766743236998008166, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0076441765
+      objectReference: {fileID: 0}
     - target: {fileID: 4766743236998008169, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1341,6 +1349,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4766743237108022126, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d33fd95c6eccfe64f9505b0675d84a23, type: 3}
+    - target: {fileID: 4766743237108022129, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
+      propertyPath: climb
+      value: 
+      objectReference: {fileID: 752923393}
     - target: {fileID: 4766743237108022129, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
       propertyPath: hitParticle
       value: 
@@ -1368,6 +1384,14 @@ PrefabInstance:
     - target: {fileID: 4766743237341853343, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766743237367053496, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.58293295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766743237367053496, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.009432793
       objectReference: {fileID: 0}
     - target: {fileID: 4766743237367053498, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1500,7 +1524,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 752923391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822bc9090447b9c40833509c4a32e597, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e9524059a18d6943b119f074db7ce4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreMe: 0

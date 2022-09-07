@@ -121,9 +121,6 @@ public class SwordTip : MonoBehaviour
             rb.angularVelocity *= 0.9f * Time.deltaTime;
             if ((transform.localPosition - startPos).normalized.y >= 0.1 && Vector3.Distance(startPos, transform.localPosition) >= 0.01)
                 DetachJoint();
-            if (GetDepthPercent() == 0 && !skipFrame) {
-                DetachJoint();
-            }
             Vector3 s = transform.position;
             Vector3 t = trig.transform.position;
             Vector3 tmp1 = Vector3.zero;
@@ -145,6 +142,8 @@ public class SwordTip : MonoBehaviour
                 transform.localPosition = newPos;
             }
         }
+        if (!joint && GetDepthPercent() >= 0.95)
+            transform.localPosition = startPos;
         if (skipFrame)
             skipFrame = false;
     }

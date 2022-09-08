@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Autohand;
 
 
 public class SwordTip : MonoBehaviour
@@ -95,7 +96,7 @@ public class SwordTip : MonoBehaviour
         //        cd -= Time.deltaTime;
         //}
         if (txt1)
-            txt1.text = string.Format("{0}\n{1}", GetDepthPercent(), joint ? true : false);
+            txt1.text = string.Format("Depth / 1: {0}\nHas joint?: {1}\nParent constraints: {2}\nHas climbable?: {3}", GetDepthPercent(), joint ? true : false, parentRB.constraints, parentRB.transform.GetComponent<Climbable>() != null);
         if (txt2)
             if (joint)
                 txt2.text = string.Format("{0}", joint.connectedBody.name);
@@ -154,6 +155,7 @@ public class SwordTip : MonoBehaviour
         // Add fixed joint
         joint = gameObject.AddComponent<FixedJoint>();
         joint.connectedBody = target;
+        joint.breakForce = 5000f;
         var newJoint = new JointDrive();
 
         // Modify config joint (slider) to be less reactive
@@ -174,6 +176,8 @@ public class SwordTip : MonoBehaviour
         // CD makes sure sword doesnt attempt to reattach joint on withdrawing from wall
 
         skipFrame = true;
+
+        parentRB.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     // Performs actions related to stabbing and climbing on collision of sword tip with a valid object
@@ -224,8 +228,12 @@ public class SwordTip : MonoBehaviour
         parentRB.freezeRotation = false;
         //climb.trackPosition = true;
         //climb.trackRotation = true;
+        if (isClimbingWall)
+            climb.UnsetClimbingHand();
         isClimbingWall = false;
         hasNegatedForce = false;
+
+        parentRB.constraints = RigidbodyConstraints.None;
     }
 
     // Waits for depth to be >= 80% or for the joint to be disabled

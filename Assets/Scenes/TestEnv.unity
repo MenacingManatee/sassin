@@ -1145,7 +1145,7 @@ MonoBehaviour:
   ignoreWeight: 0
   parentOnGrab: 1
   throwPower: 1
-  jointBreakForce: 3500
+  jointBreakForce: 10000
   showAdvancedSettings: 1
   makeChildrenGrabbable: 1
   grabPriorityWeight: 1
@@ -1179,6 +1179,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+  player: {fileID: 1590132492}
 --- !u!114 &327324051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2247,6 +2248,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   lockHandOnGrab: 0
+  player: {fileID: 0}
 --- !u!54 &752923397 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4766743238582689046, guid: 31ea2ec22042baa4fbad0c507ce5e08f, type: 3}

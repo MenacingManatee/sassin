@@ -903,6 +903,14 @@ namespace Autohand {
                 climb.Key.ResetGrabOffset();
         }
 
+        public void ManualCallClimb(Hand hand, Grabbable grab) {
+            StartClimb(hand, grab);
+        }
+
+        public void ManualEndClimb(Hand hand, Grabbable grab) {
+            EndClimb(hand, grab);
+        }
+
         protected virtual void ApplyClimbingForce() {
             climbAxis = Vector3.zero;
             if(allowClimbing && climbing.Count > 0) {

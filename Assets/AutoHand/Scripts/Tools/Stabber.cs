@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Autohand {
     public delegate void StabEvent(Stabber stabber, Stabbable stab);
@@ -11,6 +12,8 @@ namespace Autohand {
         public Grabbable grabbable;
         [Header("Stab Settings")]
         public CapsuleCollider stabCapsule;
+        public Rigidbody body;
+        public Text txt;
         [Tooltip("If left empty, will default to grabbable layers")]
         public LayerMask stabbableLayers;
         [Tooltip("The index that must match the stabbables index to allow stabbing")]
@@ -104,6 +107,12 @@ namespace Autohand {
             Vector3 capsuleAxis;
             var height = stabCapsule.height;
             var radius = stabCapsule.radius;
+
+            if (txt)
+                txt.text = Mathf.Round(body.velocity.magnitude).ToString();
+
+            if (body.velocity.magnitude <= 2f && stabbed.Count == 0)
+                return;
 
             if(stabCapsule.direction == 0) {
                 capsuleAxis = Vector3.right;

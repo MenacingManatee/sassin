@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 namespace Autohand {
     public delegate void StabEvent(Stabber stabber, Stabbable stab);
@@ -43,7 +44,9 @@ namespace Autohand {
         public StabEvent EndStabEvent;
 
 
-        List<Stabbable> stabbed;
+        [ShowIf("neverShow")]
+        public List<Stabbable> stabbed;
+        bool neverShow = false;
         List<ConfigurableJoint> stabbedJoints;
         /// <summary>Helps prevent stabbable from being smashed through objects</summary>
         Dictionary<Stabbable, int> stabbedFrames;
@@ -75,6 +78,9 @@ namespace Autohand {
             startRot = transform.rotation;
 
             gameObject.CanGetComponent(out grabbable);
+
+            if (!body)
+                body = GetComponent<Rigidbody>();
 
             StartCoroutine(StartWait());
         }
@@ -108,10 +114,10 @@ namespace Autohand {
             var height = stabCapsule.height;
             var radius = stabCapsule.radius;
 
-            if (txt)
+            if (txt && body)
                 txt.text = Mathf.Round(body.velocity.magnitude).ToString();
 
-            if (body.velocity.magnitude <= 2f && stabbed.Count == 0)
+            if (body && body.velocity.magnitude <= 2f && stabbed.Count == 0)
                 return;
 
             if(stabCapsule.direction == 0) {

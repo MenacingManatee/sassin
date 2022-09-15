@@ -926,8 +926,13 @@ namespace Autohand {
 
         public bool IsClimbing() {
             foreach(var climb in climbing)
-                if(climb.Value.enabled)
-                    return true;
+                if(climb.Value.enabled) {
+                    var s = climb.Value.transform.GetComponent<Stabber>();
+                    if (s && s.stabbed.Count == 0)
+                        return false;
+                    else
+                        return true;
+                }
             return false;
         }
 

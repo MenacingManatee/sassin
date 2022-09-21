@@ -117,7 +117,7 @@ namespace Autohand {
             if (txt && body)
                 txt.text = Mathf.Round(body.velocity.magnitude).ToString();
 
-            if (body && body.velocity.magnitude <= 2f && stabbed.Count == 0)
+            if (body && body.velocity.magnitude <= 1.75f && stabbed.Count == 0)
                 return;
 
             if(stabCapsule.direction == 0) {

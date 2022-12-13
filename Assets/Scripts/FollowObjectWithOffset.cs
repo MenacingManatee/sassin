@@ -36,7 +36,7 @@ public class FollowObjectWithOffset : MonoBehaviour
     void Update()
     {
         if (followOn)
-            transform.localPosition = _startPos + offset;
+            transform.position = followTarget.transform.position + offset;
         else
             transform.localPosition = _startPos;
     }

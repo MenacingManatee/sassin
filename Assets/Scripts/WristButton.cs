@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using NaughtyAttributes;
 
 public class WristButton : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class WristButton : MonoBehaviour
     [Header("Events")]
     [SerializeField, Tooltip("Activates on the button being pressed")]
     private UnityEvent onPressed;
-    
+    [Button]
+    private void unlockButton() {UnlockButton();}
 
     // private vars
     private Vector3 _startPos; // the starting local position
@@ -33,6 +35,7 @@ public class WristButton : MonoBehaviour
     private float cd2 = 0f; // current release cooldown remaining in seconds
     private bool isPressed = true; // is the button currently pressed
     private bool ignoreTrigger = false; // ignore the trigger
+
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +60,7 @@ public class WristButton : MonoBehaviour
             transform.localPosition = _startPos;
             onPressed.Invoke();
         }
-        if (cd2 >= 0 && GetValue() >= 1.5f && !ignoreTrigger)
+        if (cd2 > 0 && GetValue() >= 1.5f && !ignoreTrigger)
             rb.isKinematic = false;
         if (transform.localPosition.x <= maxPosX && cd2 <= 0) {
             Debug.Log("In If");
@@ -90,6 +93,7 @@ public class WristButton : MonoBehaviour
         follow.followOn = true;
         cd = 0.25f;
         isPressed = false;
+        Debug.Log("Unlock Button");
     }
 
     // Prevents the button from immediately locking on being released
